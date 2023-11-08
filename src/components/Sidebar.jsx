@@ -16,13 +16,13 @@ function Sidebar(){
                   </div>
                   <span className="flex items-center">Dashboard</span>
               </Link>
-              <Link to="/dashboard" className="flex h-[30px] hover:bg-neutral-300 rounded-sm px-2 mb-2">
+              <Link to="/projects" className="flex h-[30px] hover:bg-neutral-300 rounded-sm px-2 mb-2">
                   <div className="flex">
                       <img src="/images/8.svg" alt="Image 1" />
                   </div>
                   <span className="flex items-center">Projects</span>
               </Link>
-              <Link to="/dashboard" className="flex h-[30px] hover:bg-neutral-300 rounded-sm px-2 mb-2">
+              <Link to="/calendar" className="flex h-[30px] hover:bg-neutral-300 rounded-sm px-2 mb-2">
                   <div className="flex">
                       <img src="/images/4.svg" alt="Image 1" />
                   </div>
