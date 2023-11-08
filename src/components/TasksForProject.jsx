@@ -7,7 +7,7 @@ function TasksForProject(){
               <Sidebar />
               <div className="flex w-full ms-[250px] p-[20px] flex-col">
                   <div className="p-5">
-                      <h1 className="font-bold text-2xl text-neutral-700">Project 1</h1>
+                      <h1 className="font-bold text-2xl text-neutral-700">Project 2</h1>
                   </div>
                   <div>
 
