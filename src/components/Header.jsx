@@ -46,7 +46,7 @@ function Header() {
                 {/* Mobile Navigation Toggle */}
                 <div className="md:hidden">
                     <button
-                        className="text-white focus:outline-none"
+                        className="focus:outline-none text-cyan-500 hover:text-cyan-600 dark:text-violet-500 dark:hover:text-violet-800"
                         onClick={toggleMobileMenu}
                     >
                         <svg
