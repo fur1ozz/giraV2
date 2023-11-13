@@ -62,38 +62,40 @@ function TasksForProject() {
     return (
         <>
             <Header />
-            <div className="flex w-[100vw]">
+            <div className="flex w-[100vw] dark:bg-[#1d2125]">
                 <Sidebar />
                 <div className="flex w-full ms-[250px] p-[20px] flex-col max-sm:ms-[80px] overflow-auto">
                     <div className="p-5">
-                        <h1 className="font-bold text-2xl text-neutral-700">Project 2</h1>
+                        <h1 className="font-bold text-2xl text-neutral-700 dark:text-[#b6c2cf]">Project 2</h1>
                     </div>
                     <div className="p-5">
-                        <div className="flex bg-neutral-100 drop-shadow-sm rounded-sm h-fit w-fit p-2">
+                        <div className="flex border-2 bg-neutral-100 drop-shadow-sm rounded-sm h-fit w-fit p-2 dark:bg-[#22272b] dark:border-[#374049] dark:text-[#9fadbc]">
                             <input type="text"
-                                   className="w-[100px] border-gray-400 h-30px border-none outline-none bg-transparent me-2 text-neutral-500"
+                                   className="w-[100px] border-gray-400 h-30px border-none outline-none bg-transparent me-2 text-neutral-500 dark:text-[#9fadbc]"
                             />
-                            <img src="/images/search.svg" alt="Image" className="w-6 h-30x mr-2"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                            </svg>
                         </div>
                     </div>
 
                     <div className="w-full p-5 flex justify-between flex-wrap">
                         {/* TO DO */}
-                        <div className="w-72 bg-neutral-100 rounded-sm max-h-full p-2 flex flex-col drop-shadow-sm mb-2">
+                        <div className="w-72 bg-neutral-100 rounded-sm max-h-full p-2 flex flex-col drop-shadow-sm mb-2 dark:bg-[#161a1d]">
                             <div className="text-red-500 font-medium pt-1 pb-2">TO DO {todoTasks.length}</div>
                             {todoTasks.map((task, index) => (
                                 <div
                                     key={task.taskID}
-                                    className="tasks-cont bg-white p-4 rounded-sm min-h-[125px] mb-2 drop-shadow-sm"
+                                    className="tasks-cont bg-white p-4 rounded-sm min-h-[125px] mb-2 drop-shadow-sm dark:bg-[#22272b]"
                                 >
-                                    <div className="text-neutral-600">{task.description}</div>
+                                    <div className="text-neutral-600 dark:text-[#b6c2ce]">{task.description}</div>
                                     <div className="flex">
                                         <div className="min-h-[20px] text-[11px] flex px-[5px] items-center bg-amber-500 rounded-sm uppercase font-semibold my-1">{task.role}</div>
                                     </div>
                                     <div className="flex justify-between h-8 mt-2">
                                         <div className="flex w-1/2">
                                             <button
-                                                className="font-semibold rounded-sm text-neutral-500 hover:text-black"
+                                                className="font-semibold rounded-sm text-neutral-500 hover:text-black dark:hover:text-[#b6c2ce]"
                                                 onClick={() => changeTaskStatus(task.taskID, "In Progress")}
                                             >
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -114,21 +116,21 @@ function TasksForProject() {
                             ))}
                         </div>
                         {/* In Progress */}
-                        <div className="w-72 bg-neutral-100 rounded-sm max-h-full p-2 flex flex-col drop-shadow-sm mb-2">
+                        <div className="w-72 bg-neutral-100 rounded-sm max-h-full p-2 flex flex-col drop-shadow-sm mb-2 dark:bg-[#161a1d]">
                             <div className="text-orange-500 font-medium pt-1 pb-2">IN PROGRESS {inProgressTasks.length}</div>
                             {inProgressTasks.map((task, index) => (
                                 <div
                                     key={task.taskID}
-                                    className="tasks-cont bg-white p-4 rounded-sm min-h-[125px] mb-2 drop-shadow-sm"
+                                    className="tasks-cont bg-white p-4 rounded-sm min-h-[125px] mb-2 drop-shadow-sm dark:bg-[#22272b]"
                                 >
-                                    <div className="text-neutral-600">{task.description}</div>
+                                    <div className="text-neutral-600 dark:text-[#b6c2ce]">{task.description}</div>
                                     <div className="flex">
                                         <div className="min-h-[20px] text-[11px] flex px-[5px] items-center bg-amber-500 rounded-sm uppercase font-semibold my-1">{task.role}</div>
                                     </div>
                                     <div className="flex justify-between h-8 mt-2">
                                         <div className="flex w-1/2">
                                             <button
-                                                className="font-semibold hover:text-black rounded-sm text-neutral-500"
+                                                className="font-semibold hover:text-black rounded-sm text-neutral-500 dark:hover:text-[#b6c2ce]"
                                                 onClick={() => changeTaskStatus(task.taskID, "To Do")}
                                             >
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -136,7 +138,7 @@ function TasksForProject() {
                                                 </svg>
                                             </button>
                                             <button
-                                                className="font-semibold hover:text-black rounded-sm text-neutral-500"
+                                                className="font-semibold hover:text-black rounded-sm text-neutral-500 dark:hover:text-[#b6c2ce]"
                                                 onClick={() => changeTaskStatus(task.taskID, "Done")}
                                             >
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -157,21 +159,21 @@ function TasksForProject() {
                             ))}
                         </div>
                         {/* Done Section */}
-                        <div className="w-72 bg-neutral-100 rounded-sm max-h-full p-2 flex flex-col drop-shadow-sm mb-2">
+                        <div className="w-72 bg-neutral-100 rounded-sm max-h-full p-2 flex flex-col drop-shadow-sm mb-2 dark:bg-[#161a1d]">
                             <div className="text-lime-500 font-medium pt-1 pb-2">DONE {doneTasks.length}</div>
                             {doneTasks.map((task, index) => (
                                 <div
                                     key={task.taskID}
-                                    className="tasks-cont bg-white p-4 rounded-sm min-h-[125px] mb-2 drop-shadow-sm"
+                                    className="tasks-cont bg-white p-4 rounded-sm min-h-[125px] mb-2 drop-shadow-sm dark:bg-[#22272b]"
                                 >
-                                    <div className="text-neutral-600">{task.description}</div>
+                                    <div className="text-neutral-600 dark:text-[#b6c2ce]">{task.description}</div>
                                     <div className="flex">
                                         <div className="min-h-[20px] text-[11px] flex px-[5px] items-center bg-amber-500 rounded-sm uppercase font-semibold my-1">{task.role}</div>
                                     </div>
                                     <div className="flex justify-between h-8 mt-2">
                                         <div className="flex w-1/2">
                                             <button
-                                                className="font-semibold hover:text-black rounded-sm text-neutral-500"
+                                                className="font-semibold hover:text-black rounded-sm text-neutral-500 dark:hover:text-[#b6c2ce]"
                                                 onClick={() => changeTaskStatus(task.taskID, "In Progress")}
                                             >
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

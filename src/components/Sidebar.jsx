@@ -3,12 +3,13 @@ import {Link} from "react-router-dom";
 function Sidebar(){
     return(
       <>
-          <div className="flex w-[250px] flex-col bg-neutral-100 fixed h-screen p-4 border-r-2 max-sm:w-[74px] z-10">
+          <div className="flex w-[250px] flex-col bg-neutral-100 fixed h-screen p-4 border-r-2 max-sm:w-[74px] z-10
+          dark:bg-[#1d2125] dark:text-[#b6c2cf] dark:border-[#282f35]">
               <div className="h-[100px] flex">
                   {/*<img className="mx-auto" src="/images/giraLogo.svg" />*/}
               </div>
               <div className="w-full flex justify-center mb-[5px]">
-                  <div className="h-[2px] bg-[#e5e7eb] w-[95%]"></div>
+                  <div className="h-[2px] bg-[#e5e7eb] w-[95%] dark:bg-[#282f35]"></div>
               </div>
               <Link to="/dashboard" className="flex h-[40px] hover:bg-neutral-300 rounded-sm px-2 py-[5px] mb-2 items-center justify-between">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -29,7 +30,7 @@ function Sidebar(){
                   <span className="flex items-center max-sm:hidden">Calendar</span>
               </Link>
               <div className="w-full flex justify-center mb-[5px]">
-                  <div className="h-[2px] bg-[#e5e7eb] w-[95%]"></div>
+                  <div className="h-[2px] bg-[#e5e7eb] w-[95%] dark:bg-[#282f35]"></div>
               </div>
               <Link to="/new" className="flex h-[40px] hover:bg-neutral-300 rounded-sm px-2 py-[5px] mb-2 items-center justify-between">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
