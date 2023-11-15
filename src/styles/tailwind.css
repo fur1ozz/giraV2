@@ -1,3 +1,15 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+body {
+    background: white;
+}
+
+.dark body{
+    background: #1d2125;
+}
+
+.dark input[type="date"] {
+    color-scheme:dark;
+}
