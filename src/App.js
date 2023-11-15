@@ -4,16 +4,18 @@ import CertainProjectCalendarPage from "./pages/CertainProjectCalendarPage";  //
 import ProjectCalendarPickerPage from "./pages/ProjectCalendarPickerPage";
 
 import "./styles/tailwind.css";
-
+// import {useEffect, useState} from "react";
+import Register from "./components/Register";
 function App() {
   return (
     <Router>
-      <div>
+      <div className="min-h-screen dark:bg-[#1d2125]">
         <Routes>
           <Route exact path="/" />
           <Route path="/Project" element={<ProjectPage />} />
           <Route path="/CertainProjectCalendar/:projectId" element={<CertainProjectCalendarPage />} />  {/* This route should match your URL structure */}
           <Route path="/ProjectCalendarPicker" element={<ProjectCalendarPickerPage />} />
+          <Route path="/Register" element = {<Register />}/>
         </Routes>
       </div>
     </Router>
