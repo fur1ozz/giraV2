@@ -38,7 +38,7 @@ function Sidebar(){
                   </svg>
                   <span className="flex items-center max-sm:hidden">Projects</span>
               </Link>
-              <Link to="/calendar"
+              <Link to="/ProjectCalendarPicker"
                     className={`flex h-[40px] rounded-sm px-2 py-[5px] mb-2 items-center justify-between ${
                         currentRoute === '/calendar' ? 'bg-[#06b6d44a] dark:bg-[#8b5cf64a]' : 'hover:bg-[#06b6d44a] dark:hover:bg-[#8b5cf64a]'
                     }`}
