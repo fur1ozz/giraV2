@@ -288,7 +288,7 @@ console.log(laravelData);
        <div className="min-h-full w-full flex flex-col">
         <Sidebar/>
 
-            <div className='w-100 min-h-[100vh] max-ws:ms-[250px] dark:bg-[#1d2125] dark:text-white flex flex-col items-center overflow-auto'>
+        <div className='w-100 min-h-[100vh] ms-[250px] max-sm:ms-[80px] max-[500px]:ms-0 dark:bg-[#1d2125] dark:text-white flex flex-col items-center overflow-auto'>
                 <div className="border-b dark:border-neutral-500 w-[85%] my-12 justify-between flex">
                     <div className='flex flex-col sm:flex-row justify-between mx-6 w-full'>
                         <h1 className="text-3xl mb-2 max-sm:w-[100%] max-sm:text-center">{projectOverview} overview</h1>
