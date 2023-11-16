@@ -71,6 +71,31 @@ function TasksForProject() {
             });
     };
 
+    const handleDeleteTask = (taskId) => {
+        // Make a request to delete the task
+        fetch(`http://localhost/api/tasks/delete/${taskId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then((data) => {
+                console.log('Task deleted successfully:', data);
+                // Update state to remove the deleted task
+                const updatedTasks = tasks.filter((task) => task.id !== taskId);
+                setTasks(updatedTasks);
+            })
+            .catch((error) => {
+                console.error('Error deleting task:', error);
+            });
+    };
+
 
 
     const filteredTasks = tasks.filter((task) =>
@@ -81,12 +106,18 @@ function TasksForProject() {
         return taskList.map((task, index) => (
             <div
                 key={task.id}
-                className="tasks-cont bg-white p-4 rounded-sm min-h-[125px] mb-2 drop-shadow-sm dark:bg-[#22272b]"
+                className="tasks-cont bg-white p-4 rounded-sm min-h-[125px] mb-2 drop-shadow-sm dark:bg-[#22272b] group"
             >
+                <button
+                    onClick={() => handleDeleteTask(task.id)}
+                    className="absolute text-transparent group-hover:text-red-500 top-0 right-0 transition duration-100 ease-in"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
                 <div className="text-neutral-600 dark:text-[#b6c2ce]">{task.description}</div>
                 <div className="flex">
-                    {/*TODO*/}
-                    {/*Get the month number out of passed data in link*/}
                     <div className={`min-h-[20px] text-[11px] flex px-[5px] ${getMonthBackgroundColor(projectsData.creationDate)} items-center bg-amber-600 rounded-sm uppercase font-semibold my-1`}>{task.role}</div>
                 </div>
                 <div className="flex justify-between h-8 mt-2">
