@@ -10,7 +10,7 @@ function Sidebar(){
     }, [location.pathname]);
     return(
       <>
-          <div className="flex w-[250px] flex-col bg-neutral-100 fixed h-screen p-4 border-r-2 max-sm:w-[74px] z-10
+          <div className="flex w-[250px] flex-col bg-neutral-100 fixed h-screen p-4 border-r-2 max-sm:w-[74px] max-[500px]:hidden
           dark:bg-[#1d2125] dark:text-[#b6c2cf] dark:border-[#282f35]">
               <div className="h-[100px] flex">
                   {/*<img className="mx-auto" src="/images/giraLogo.svg" />*/}
@@ -60,6 +60,16 @@ function Sidebar(){
                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 10.5v6m3-3H9m4.06-7.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
                   </svg>
                   <span className="flex items-center max-sm:hidden">New Project</span>
+              </Link>
+              <Link to="/newTask"
+                    className={`flex h-[40px] rounded-sm px-2 py-[5px] mb-2 items-center justify-between ${
+                        currentRoute === '/newTask' ? 'bg-[#06b6d44a] dark:bg-[#8b5cf64a]' : 'hover:bg-[#06b6d44a] dark:hover:bg-[#8b5cf64a]'
+                    }`}
+              >
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 6.878V6a2.25 2.25 0 012.25-2.25h7.5A2.25 2.25 0 0118 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 004.5 9v.878m13.5-3A2.25 2.25 0 0119.5 9v.878m0 0a2.246 2.246 0 00-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0121 12v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6c0-.98.626-1.813 1.5-2.122" />
+                  </svg>
+                  <span className="flex items-center max-sm:hidden">New Task</span>
               </Link>
           </div>
       </>
