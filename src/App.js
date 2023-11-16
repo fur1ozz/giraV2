@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ProjectPage from "./pages/ProjectPage";
-import CertainProjectCalendarPage from "./pages/CertainProjectCalendarPage";  // Make sure the correct import path is used
+import CertainProjectCalendarPage from "./pages/CertainProjectCalendarPage";
 import ProjectCalendarPickerPage from "./pages/ProjectCalendarPickerPage";
-
 import "./styles/tailwind.css";
 import Projects from "./components/Projects";
 // import {useEffect, useState} from "react";
 import Register from "./components/Register";
+
 function App() {
   return (
     <Router>

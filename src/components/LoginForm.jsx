@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
-
+import { useNavigate } from 'react-router-dom';
 const LoginForm = () => {
+    const navigate = useNavigate();
     const [login, setLogin] = useState({
         name: '',
         password: ''
@@ -71,6 +72,8 @@ const LoginForm = () => {
                         });
                     }else{
                         setError({});
+                        localStorage.setItem('token', data.token);
+                        navigate('/ProjectCalendarPicker');
                     }
                 })
                 .catch((error) => {
@@ -87,7 +90,7 @@ const LoginForm = () => {
                 <h1 className = "text-gray-800 mb-5">Login</h1>
                 <input
                     type="text"
-                    className='indent-2 rounded-lg border-2 dark:border-pink-300 m-4 h-9 text-gray-400 text-lg bg-white focus:dark:border-pink-600 transition duration-400 outline-none'
+                    className='indent-2 rounded-lg border-2 dark:border-pink-300 m-4 h-9 text-gray-400 dark:text-black text-lg bg-white focus:dark:border-pink-600 transition duration-400 outline-none'
                     onChange={handleInputChange}
                     name = "name"
                     value = {login.name}
@@ -96,7 +99,7 @@ const LoginForm = () => {
                 <p className = "text-lg text-pink-400">{error.name}</p>
                 <input
                     type="password"
-                    className='indent-2 rounded-lg border-2 dark:border-pink-300 m-4 h-9 text-gray-400 text-lg bg-white focus:dark:border-pink-600 transition duration-400 outline-none'
+                    className='indent-2 rounded-lg border-2 dark:border-pink-300 m-4 h-9 text-gray-400 dark:text-black text-lg bg-white focus:dark:border-pink-600 transition duration-400 outline-none'
                     onChange={handleInputChange}
                     name = "password"
                     value = {login.password}
@@ -104,7 +107,7 @@ const LoginForm = () => {
                 />
                 <p className = "text-lg text-pink-400">{error.password}</p>
                 <button
-                    className = "border dark:border-pink-800 m-4 h-8 text-lg bg-pink-500 text-white rounded-lg hover:bg-pink-300 transition duration-400"
+                    className = "border dark:border-pink-800 m-4 h-8 text-lg bg-pink-500 text-white  rounded-lg hover:bg-pink-300 transition duration-400"
                     onClick={handleLogin}
                 >
                     Sign in
