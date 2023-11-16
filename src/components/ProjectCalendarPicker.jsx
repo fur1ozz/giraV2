@@ -24,7 +24,7 @@ function ProjectCalendarPicker(){
     const handleProjectClick = (projectId, projectTitle) => {
         window.location.href = `http://localhost:3000/CertainProjectCalendar/${projectId}`;
     };
-
+    
     return(
         <>
         <Header/>

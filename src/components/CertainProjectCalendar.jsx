@@ -334,7 +334,7 @@ console.log(laravelData);
                             <tbody>
                                 {/* {laravelData
                                 .filter(task => new Date(task.dueDate).getMonth() + 1 === month) */}
-                                {sortTasksByDueDate(laravelData)
+                                {sortTasksByDueDate(filteredTasks)
                                 .filter(task => {
                                     const taskDueDate = new Date(task.dueDate);
                                     return (
@@ -346,7 +346,7 @@ console.log(laravelData);
                                     <React.Fragment key={index}>
                                     <div className='w-2/5 min-w-[310px] min-h-1/2 border-2 shadow-lg dark:shadow-white shadow-white dark:bg-[#1d2125] rounded-lg border-neutral-600 flex flex-col fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-neutral-100 hidden' id={`editTask${task.id}`}>
                                         <form className='flex w-full h-full flex-col text-black dark:text-white' onSubmit={(e) => handleSubmitEdit(e, task.id)} id={`formID${task.id}`}>
-                                            <div className='absolute bg-neutral-600 top-0 right-0 w-8 h-8 my-4 mx-4 rounded-full text-center dark:text-black' onClick={(event) => toggleEdit(task.id, event)}>
+                                            <div className='absolute bg-neutral-600 top-0 right-0 w-8 h-8 my-4 mx-4 rounded-full cursor-pointer text-center dark:text-black' onClick={(event) => toggleEdit(task.id, event)}>
                                                 <p className='flex items-center justify-center h-full text-white'>X</p>
                                             </div>
                                             <div className='flex flex-col my-4 mx-4'>   
