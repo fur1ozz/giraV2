@@ -24,13 +24,13 @@ function ProjectCalendarPicker(){
     const handleProjectClick = (projectId, projectTitle) => {
         window.location.href = `http://localhost:3000/CertainProjectCalendar/${projectId}`;
     };
-    
+
     return(
         <>
         <Header/>
         <div className="min-h-full w-full flex flex-col">
             <Sidebar/>
-            <div className='w-100 min-h-screen ms-[250px] max-sm:ms-[80px] dark:bg-[#1d2125] dark:text-white flex flex-col items-center overflow-auto'>
+            <div className='w-100 min-h-screen max-ws:ms-[250px] dark:bg-[#1d2125] dark:text-white flex flex-col items-center overflow-auto'>
                 <div className="border-b dark:border-neutral-500 w-[85%] my-12 flex">
                     <div className='flex flex-col mx-6 w-full justify-center text-center'>
                         <h1 className="text-6xl mb-2">Project calendar</h1>
