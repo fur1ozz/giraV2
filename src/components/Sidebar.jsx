@@ -10,7 +10,7 @@ function Sidebar(){
     }, [location.pathname]);
     return(
       <>
-          <div className="flex w-[250px] flex-col bg-neutral-100 fixed h-screen p-4 border-r-2 max-sm:w-[74px] z-10
+          <div className="flex w-[250px] flex-col bg-neutral-100 fixed h-screen p-4 border-r-2 max-sm:w-[74px] max-[500px]:hidden
           dark:bg-[#1d2125] dark:text-[#b6c2cf] dark:border-[#282f35]">
               <div className="h-[100px] flex">
                   {/*<img className="mx-auto" src="/images/giraLogo.svg" />*/}

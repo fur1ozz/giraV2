@@ -46,7 +46,7 @@ function Projects() {
             <Header />
             <div className="flex w-[100vw] dark:bg-[#1d2125]">
                 <Sidebar />
-                <div className="flex w-full ms-[250px] p-[20px] flex-col max-sm:ms-[80px] overflow-auto">
+                <div className="flex w-full ms-[250px] p-[20px] flex-col max-sm:ms-[80px] overflow-auto max-[500px]:ms-0">
                     <div className="p-5">
                         <h1 className="font-bold text-2xl text-neutral-700 dark:text-[#b6c2cf]">Your Projects</h1>
                     </div>
@@ -71,7 +71,7 @@ function Projects() {
                             </svg>
                         </div>
                     </div>
-                    <div className="w-full p-5 flex justify-between flex-wrap">
+                    <div className="w-full p-5 flex justify-between flex-wrap max-[500px]:justify-center">
                         {filteredProjects.length > 0 ? (
                             renderProjects(filteredProjects)
                         ) : (

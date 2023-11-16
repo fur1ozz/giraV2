@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="97677b34-ce62-4f87-9772-76a064535917" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Projects.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/ColorUtils.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gira-v2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gira-v2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Projects.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Projects.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Sidebar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/TasksForProject.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TasksForProject.jsx" afterDir="false" />
     </list>
@@ -63,7 +57,7 @@
       <workItem from="1700030843763" duration="411000" />
       <workItem from="1700031261114" duration="6351000" />
       <workItem from="1700048236613" duration="5015000" />
-      <workItem from="1700145021403" duration="8781000" />
+      <workItem from="1700145021403" duration="10256000" />
     </task>
     <servers />
   </component>
