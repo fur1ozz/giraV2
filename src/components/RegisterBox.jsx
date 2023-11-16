@@ -10,16 +10,14 @@ const RegisterBox = () => {
     const handleToggleForm = () => {
         setIsLogin((prev) => !prev);
     };
-
+    
     const handleResize = () => {
         setWidth(window.innerWidth);
     };
 
     useEffect(() => {
-        // Add event listener for window resize
         window.addEventListener('resize', handleResize);
 
-        // Cleanup the event listener on component unmount
         return () => {
             window.removeEventListener('resize', handleResize);
         };
@@ -28,8 +26,8 @@ const RegisterBox = () => {
     const conditionClass = width < 640 ? 'min-w-full' : '';
 
     return (
-        <div className="xl:w-3/6 h-3/4 border-2 rounded-lg bg-white shadow-lg border-gray-300 lg:w-8/12 md:w-4/6 w-5/6">
-            <div className="container w-full h-full relative rounded-lg" style={{
+        <div className="xl:w-3/6 h-3/4 border-2 rounded-lg bg-white shadow-lg border-gray-300 lg:w-8/12 md:w-4/6 w-5/6 dark:border-neutral-200 dark:text-white ">
+            <div className="container w-full h-full relative rounded-lg dark:invert" style={{
                 backgroundImage: `url('/images/box-image.jpg')`,
                 backgroundSize: 'cover',
             }}>
@@ -55,7 +53,7 @@ const RegisterBox = () => {
                 </div>
                 <div className="mt-4 text-center">
                     <button
-                        className="text-blue-500 hover:underline focus:outline-none"
+                        className="text-blue-500 dark:text-pink-600 hover:underline focus:outline-none"
                         onClick={handleToggleForm}
                     >
                         {isLogin ? 'Join us!' : 'Already have an account?'}

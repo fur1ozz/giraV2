@@ -107,7 +107,7 @@ const RegisterForm = () => {
                 <h1 className = "text-gray-800 mb-5">Register</h1>
                 <input
                     type="text"
-                    className='indent-2 rounded-lg border-2 dark:border-purple-400 m-4 h-9 text-gray-400 text-lg bg-white focus:dark:border-purple-700 transition duration-400 outline-none'
+                    className='indent-2 rounded-lg border-2 dark:border-purple-400 m-4 h-9 text-gray-400 text-lg dark:text-black bg-white focus:dark:border-purple-700 transition duration-400 outline-none'
                     onChange={handleInputChange}
                     name = "name"
                     value = {register.name}
@@ -116,7 +116,7 @@ const RegisterForm = () => {
                 <p className = "text-lg text-purple-600">{error.name}</p>
                 <input
                     type="text"
-                    className='indent-2 rounded-lg border-2 dark:border-purple-400 m-4 h-9 text-gray-400 text-lg bg-white focus:dark:border-purple-700 transition duration-400 outline-none'
+                    className='indent-2 rounded-lg border-2 dark:border-purple-400 m-4 h-9 text-gray-400 text-lg dark:text-black bg-white focus:dark:border-purple-700 transition duration-400 outline-none'
                     onChange={handleInputChange}
                     name = "email"
                     value = {register.email}
@@ -125,7 +125,7 @@ const RegisterForm = () => {
                 <p className = "text-lg text-purple-600">{error.email}</p>
                 <input
                     type="password"
-                    className='indent-2 rounded-lg border-2 dark:border-purple-400 m-4 h-9 text-gray-400 text-lg bg-white focus:dark:border-purple-700 transition duration-400 outline-none'
+                    className='indent-2 rounded-lg border-2 dark:border-purple-400 m-4 h-9 text-gray-400 text-lg dark:text-black bg-white focus:dark:border-purple-700 transition duration-400 outline-none'
                     onChange={handleInputChange}
                     name = "password"
                     value = {register.password}
@@ -134,7 +134,7 @@ const RegisterForm = () => {
                 <p className = "text-lg text-purple-600">{error.password}</p>
                 <input
                     type="password"
-                    className='indent-2 rounded-lg border-2 dark:border-purple-400 m-4 h-9 text-gray-400 text-lg bg-white focus:dark:border-purple-700 transition duration-400 outline-none'
+                    className='indent-2 rounded-lg border-2 dark:border-purple-400 m-4 h-9 text-gray-400 text-lg dark:text-black bg-white focus:dark:border-purple-700 transition duration-400 outline-none'
                     onChange={handleInputChange}
                     name = "passwordc"
                     value = {register.passwordc}
