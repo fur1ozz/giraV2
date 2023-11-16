@@ -150,7 +150,7 @@ function TasksForProject() {
             <Header />
             <div className="flex w-[100vw] dark:bg-[#1d2125]">
                 <Sidebar />
-                <div className="flex w-full ms-[250px] p-[20px] flex-col max-sm:ms-[80px] overflow-auto">
+                <div className="flex w-full ms-[250px] p-[20px] flex-col max-sm:ms-[80px] overflow-auto max-[500px]:ms-0">
                     <div className="p-5">
                         <h1 className={`font-bold text-2xl ${getMonthTextColor(projectsData.creationDate)}`}>{projectsData.projectName}</h1>
                     </div>
@@ -175,20 +175,20 @@ function TasksForProject() {
                             </svg>
                         </div>
                     </div>
-                    <div className="w-full p-5 flex justify-between flex-wrap">
-                        <div className="w-72 bg-neutral-100 rounded-sm max-h-full p-2 flex flex-col drop-shadow-sm mb-2 dark:bg-[#161a1d]">
+                    <div className="w-full p-5 flex justify-between flex-wrap max-[500px]:justify-center">
+                        <div className="w-72 bg-neutral-100 rounded-sm max-h-full p-2 flex flex-col drop-shadow-sm mb-3 dark:bg-[#161a1d]">
                             <div className="text-red-500 font-medium pt-1 pb-2">
                                 TO DO {filteredTasks.filter((task) => task.status === "To Do").length}
                             </div>
                             {renderTasks(filteredTasks.filter((task) => task.status === "To Do"), "To Do")}
                         </div>
-                        <div className="w-72 bg-neutral-100 rounded-sm max-h-full p-2 flex flex-col drop-shadow-sm mb-2 dark:bg-[#161a1d]">
+                        <div className="w-72 bg-neutral-100 rounded-sm max-h-full p-2 flex flex-col drop-shadow-sm mb-3 dark:bg-[#161a1d]">
                             <div className="text-orange-500 font-medium pt-1 pb-2">
                                 IN PROGRESS {filteredTasks.filter((task) => task.status === "In Progress").length}
                             </div>
                             {renderTasks(filteredTasks.filter((task) => task.status === "In Progress"), "In Progress")}
                         </div>
-                        <div className="w-72 bg-neutral-100 rounded-sm max-h-full p-2 flex flex-col drop-shadow-sm mb-2 dark:bg-[#161a1d]">
+                        <div className="w-72 bg-neutral-100 rounded-sm max-h-full p-2 flex flex-col drop-shadow-sm mb-3 dark:bg-[#161a1d]">
                             <div className="text-lime-500 font-medium pt-1 pb-2">
                                 DONE {filteredTasks.filter((task) => task.status === "Done").length}
                             </div>
