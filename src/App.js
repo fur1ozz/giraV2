@@ -6,6 +6,7 @@ import "./styles/tailwind.css";
 import Projects from "./components/Projects";
 // import {useEffect, useState} from "react";
 import Register from "./components/Register";
+import NewProject from "./components/NewProject";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route exact path="/" />
           <Route path="/project/task" element={<ProjectPage />}/>
           <Route path="/project" element={<Projects />}/>
+          <Route path="/newProject" element={<NewProject />}/>
           <Route path="/CertainProjectCalendar/:projectId" element={<CertainProjectCalendarPage />} />  {/* This route should match your URL structure */}
           <Route path="/ProjectCalendarPicker" element={<ProjectCalendarPickerPage />} />
           <Route path="/Register" element = {<Register />}/>

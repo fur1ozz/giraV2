@@ -72,28 +72,31 @@ function TasksForProject() {
     };
 
     const handleDeleteTask = (taskId) => {
-        // Make a request to delete the task
-        fetch(`http://localhost/api/tasks/delete/${taskId}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
+        const isConfirmed = window.confirm('Are you sure you want to delete this task?');
+
+        if (isConfirmed) {
+            fetch(`http://localhost/api/tasks/delete/${taskId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
             })
-            .then((data) => {
-                console.log('Task deleted successfully:', data);
-                // Update state to remove the deleted task
-                const updatedTasks = tasks.filter((task) => task.id !== taskId);
-                setTasks(updatedTasks);
-            })
-            .catch((error) => {
-                console.error('Error deleting task:', error);
-            });
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    console.log('Task deleted successfully:', data);
+                    // Update state to remove the deleted task
+                    const updatedTasks = tasks.filter((task) => task.id !== taskId);
+                    setTasks(updatedTasks);
+                })
+                .catch((error) => {
+                    console.error('Error deleting task:', error);
+                });
+        }
     };
 
 

@@ -47,8 +47,9 @@ function Projects() {
             <div className="flex w-[100vw] dark:bg-[#1d2125]">
                 <Sidebar />
                 <div className="flex w-full ms-[250px] p-[20px] flex-col max-sm:ms-[80px] overflow-auto max-[500px]:ms-0">
-                    <div className="p-5">
+                    <div className="p-5 flex justify-between">
                         <h1 className="font-bold text-2xl text-neutral-700 dark:text-[#b6c2cf]">Your Projects</h1>
+                        <Link to="/newProject" className="rounded px-3 py-[7px] font-medium items-center text-sm justify-between text-neutral-800 dark:text-neutral-200 bg-cyan-500 hover:bg-cyan-400 dark:bg-violet-500 dark:hover:bg-violet-700">Create Project</Link>
                     </div>
                     <div className="p-5">
                         <div className="flex border-2 bg-neutral-100 drop-shadow-sm rounded-sm h-fit w-fit p-2 dark:bg-[#22272b] dark:border-[#374049] dark:text-[#9fadbc]">
