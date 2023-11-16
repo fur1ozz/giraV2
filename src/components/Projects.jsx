@@ -8,14 +8,30 @@ import {getMonthTextColor} from "../utils/ColorUtils";
 function Projects() {
     const [searchTerm, setSearchTerm] = useState('');
     const [projectsData, setProjectsData] = useState([]);
-    const teamId = 1;
+    const [teamIds, setTeamIds] = useState([]);
+    const userId = 1;
 
     useEffect(() => {
-        fetch(`http://localhost/api/projects/${teamId}`)
+        fetch(`http://localhost/api/members/${userId}`)
             .then((response) => response.json())
-            .then((data) => setProjectsData(data.projects)) // Extracting projects from the response
-            .catch((error) => console.error('Error fetching data:', error));
-    }, [teamId]);
+            .then((data) => {
+
+                const userTeamIds = data.members.map((member) => member.team_id);
+                setTeamIds(userTeamIds);
+
+
+                userTeamIds.forEach((teamId) => {
+                    fetch(`http://localhost/api/projects/${teamId}`)
+                        .then((response) => response.json())
+                        .then((projects) => {
+
+                            setProjectsData((prevProjects) => [...prevProjects, ...projects.projects]);
+                        })
+                        .catch((error) => console.error('Error fetching projects data:', error));
+                });
+            })
+            .catch((error) => console.error('Error fetching user data:', error));
+    }, [userId]);
 
     const filteredProjects = Array.isArray(projectsData)
         ? projectsData.filter((project) =>
