@@ -21,7 +21,7 @@ function Home(){
                     <div className='flex w-[90%] text-center justify-center'>
                     <p className='font-light text-2xl align-center'>Created, Maintained and Run by 3 passionate coders:</p>
                     </div>
-                    <div class="max-w-sm rounded overflow-hidden border-2 border-neutral-600 max-[320px]:w-[315px] w-[300px] my-6 mx-6 shadow-lg h-full dark:border-neutral-200">
+                    <div class="max-w-sm rounded overflow-hidden border-2 border-neutral-600 max-[320px]:w-[315px] w-[300px] h-[500px] overflow-y-scroll my-6 mx-6 shadow-lg h-full dark:border-neutral-200">
                     <img className="w-full" src="/images/marcis_preset.png" />
                         <div class="px-6 py-4">
                             <div class="font-bold text-xl mb-2">Marcis Jansons</div>
@@ -35,7 +35,7 @@ function Home(){
                             <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 dark:text-white dark:border-neutral-200 border-2 dark:bg-[#1d2125]">#impulsive</span>
                         </div>
                     </div>
-                    <div class="max-w-sm rounded overflow-hidden border-2 border-neutral-600 max-[320px]:w-[315px] w-[300px] my-6 mx-6 shadow-lg h-full dark:border-neutral-200">
+                    <div class="max-w-sm rounded overflow-hidden border-2 border-neutral-600 max-[320px]:w-[315px] w-[300px] h-[500px] overflow-y-scroll my-6 mx-6 shadow-lg h-full dark:border-neutral-200">
                     <img className="w-full" src="/images/tomass_heisenberg.jpeg" />
                         <div class="px-6 py-4">
                             <div class="font-bold text-xl mb-2">Tomass Vēveris</div>
@@ -49,7 +49,7 @@ function Home(){
                             <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 dark:text-white dark:border-neutral-200 border-2 dark:bg-[#1d2125]">#adaptive</span>
                         </div>
                     </div>
-                    <div class="max-w-sm rounded overflow-hidden border-2 border-neutral-600 max-[320px]:w-[315px] w-[300px] my-6 mx-6 shadow-lg h-full dark:border-neutral-200">
+                    <div class="max-w-sm rounded overflow-hidden border-2 border-neutral-600 max-[320px]:w-[315px] w-[300px] h-[500px] overflow-y-scroll my-6 mx-6 shadow-lg h-full dark:border-neutral-200">
                     <img className="w-full max-h-[550px]" src="/images/alekss_dark.png" />
                         <div class="px-6 py-4">
                             <div class="font-bold text-xl mb-2">Alekss Velvelis</div>
