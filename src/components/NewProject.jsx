@@ -89,7 +89,7 @@ function NewProject() {
             <Header />
             <div className="flex w-[100vw] dark:bg-[#1d2125]">
                 <Sidebar />
-                <div className="flex w-full mx-[250px] p-[20px] flex-col max-sm:mx-[80px] overflow-auto max-[500px]:mx-0">
+                <div className="flex w-full mx-auto p-[20px] flex-col max-md:ms-[250px] max-sm:mx-[80px] overflow-auto max-[500px]:mx-0">
                     <div className="p-5 flex justify-center">
                         <h1 className="font-bold text-2xl text-neutral-700 dark:text-[#b6c2cf]">New Project</h1>
                     </div>
