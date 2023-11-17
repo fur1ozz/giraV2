@@ -1,11 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {useNavigate} from "react-router-dom";
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
-
-
+import { useNavigate } from 'react-router-dom';
 const LoginForm = () => {
     const navigate = useNavigate();
-
     const [login, setLogin] = useState({
         name: '',
         password: ''

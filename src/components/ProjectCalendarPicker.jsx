@@ -29,11 +29,11 @@ function ProjectCalendarPicker(){
         <Header/>
         <div className="min-h-full w-full flex flex-col">
             <Sidebar/>
-            <div className='w-100 min-h-screen ms-[250px] max-sm:ms-[80px] dark:bg-[#1d2125] dark:text-white flex flex-col items-center overflow-auto'>
-                <div className="border-b dark:border-neutral-500 w-[85%] my-12 flex">
+            <div className='w-100 min-h-screen ms-[250px] max-sm:ms-[80px] max-[500px]:ms-0 dark:bg-[#1d2125] dark:text-white flex flex-col items-center overflow-auto'>
+                <div className="border-b border-[#e5e7eb] dark:border-[#282f35] w-[85%] my-12 flex">
                     <div className='flex flex-col mx-6 w-full justify-center text-center'>
-                        <h1 className="text-6xl mb-2">Project calendar</h1>
-                        <p className="text-3xl mb-2 font-light">Find your desired project</p>
+                        <h1 className="text-6xl mb-2 font-bold text-neutral-700 dark:text-[#b6c2cf]">Project calendar</h1>
+                        <p className="text-3xl mb-2 font-normal text-neutral-700 dark:text-[#b6c2cf]">Find your desired project</p>
                     </div>
                 </div>
                 <div className='flex flex-wrap flex-grow w-full h-full justify-center '>
