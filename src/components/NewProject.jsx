@@ -101,8 +101,8 @@ function NewProject() {
                                         Team id
                                     </label>
                                     <input
-                                        className={`dark:bg-[#282f35] dark:border-0 border shadow appearance-none rounded w-full py-2 px-3 text-gray-700 dark:text-[#b6c2cf] dark:placeholder:text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
-                                            teamIdError ? 'border-red-500 dark:border' : ''
+                                        className={`dark:bg-[#282f35] dark:border-transparent border shadow appearance-none rounded w-full py-2 px-3 text-gray-700 dark:text-[#b6c2cf] dark:placeholder:text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                                            teamIdError ? 'border-red-500 dark:border-red-500' : ''
                                         }`}
                                         id="teamId"
                                         type="number"
@@ -125,8 +125,8 @@ function NewProject() {
                                         Project name
                                     </label>
                                     <input
-                                        className={`dark:bg-[#282f35] dark:border-0 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-[#b6c2cf] dark:placeholder:text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
-                                            nameError ? 'border-red-500 dark:border' : ''
+                                        className={`dark:bg-[#282f35] dark:border-transparent shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-[#b6c2cf] dark:placeholder:text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                                            nameError ? 'border-red-500 dark:border-red-500' : ''
                                         }`}
                                         id="projectName"
                                         type="text"
@@ -151,8 +151,8 @@ function NewProject() {
                                         Project description
                                     </label>
                                     <textarea
-                                        className={`dark:bg-[#282f35] dark:border-0 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-[#b6c2cf] dark:placeholder:text-gray-700 leading-tight focus:outline-none focus:shadow-outline resize-none ${
-                                            descriptionError ? 'dark:border border-red-500' : ''
+                                        className={`dark:bg-[#282f35] dark:border-transparent shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-[#b6c2cf] dark:placeholder:text-gray-700 leading-tight focus:outline-none focus:shadow-outline resize-none ${
+                                            descriptionError ? 'dark:border-red-500 border-red-500' : ''
                                         }`}
                                         id="projectDescription"
                                         placeholder="Freestyle gangster rappers"
