@@ -18,9 +18,9 @@ function Sidebar(){
               <div className="w-full flex justify-center mb-[5px]">
                   <div className="h-[2px] bg-[#e5e7eb] w-full dark:bg-[#282f35]"></div>
               </div>
-              <Link to="/dashboard"
+              <Link to="/Home"
                     className={`flex h-[40px] rounded-sm px-2 py-[5px] mb-2 items-center justify-between ${
-                        currentRoute === '/dashboard' ? 'bg-[#06b6d44a] dark:bg-[#8b5cf64a]' : 'hover:bg-[#06b6d44a] dark:hover:bg-[#8b5cf64a]'
+                        currentRoute === '/Home' ? 'bg-[#06b6d44a] dark:bg-[#8b5cf64a]' : 'hover:bg-[#06b6d44a] dark:hover:bg-[#8b5cf64a]'
                     }`}
               >
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
