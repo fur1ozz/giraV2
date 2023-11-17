@@ -14,7 +14,7 @@ function Home(){
                 <div className="border-b border-[#e5e7eb] dark:border-[#282f35] w-[85%] py-6 mb-6 flex">
                     <div className='flex flex-col mx-6 w-full justify-center text-center'>
                         <h1 className="text-5xl mb-2 font-bold text-neutral-700 dark:text-[#b6c2cf]">Welcome to GiraV2!</h1>
-                        <p className="text-xl mb-2 font-normal text-amber-700">Your Ultimate Project Management Companion!</p>
+                        <p className="text-xl mb-2 font-normal text-cyan-500 dark:text-violet-500">Your Ultimate Project Management Companion!</p>
                     </div>
                 </div>
                 <div className='flex flex-wrap w-full h-full justify-center text-neutral-700 dark:text-[#b6c2cf]'>

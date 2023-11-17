@@ -18,15 +18,15 @@ function App() {
     <Router>
       <div className="min-h-screen dark:bg-[#1d2125]">
         <Routes>
-          <Route exact path="/" />
+          <Route exact path="/Home" element = {<Home />}/>
           <Route path="/project/task" element={<ProjectPage />}/>
           <Route path="/project" element={<Projects />}/>
           <Route path="/newProject" element={<NewProject />}/>
           <Route path="/CertainProjectCalendar/:projectId" element={<CertainProjectCalendarPage />} />  {/* This route should match your URL structure */}
           <Route path="/ProjectCalendarPicker" element={<ProjectCalendarPickerPage />} />
           <Route path="/Register" element = {<Register />}/>
-          <Route path="/Contact" element = {<Contact />}/>
-          <Route path="/Home" element = {<Home />}/>
+          <Route path="/ContactInfo" element = {<Contact />}/>
+          <Route exact path="/Home" element = {<Home />}/>
         </Routes>
       </div>
     </Router>
