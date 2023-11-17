@@ -4,8 +4,16 @@ import Header from "./Header";
 import axios from 'axios';
 import { FaStar } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
+import {useNavigate} from "react-router-dom";
+import CreateTask from "./CreateTask";
 function CertainProjectCalendar({ match }){
+    const navigate = useNavigate();
 
+    const [isCreateTaskOverlayVisible, setCreateTaskOverlayVisible] = useState(false);
+
+    const toggleCreateTaskOverlay = () => {
+        setCreateTaskOverlayVisible(!isCreateTaskOverlayVisible);
+    };
 
     const generateStars = (rating) => {
         const stars = [];
@@ -158,6 +166,10 @@ function CertainProjectCalendar({ match }){
         setRating(currentTask.priority || null);
     };
 
+    const toggleAdd = () => {
+
+    }
+
     const [editDesc, setEditDesc] = useState('');
     const [editDueDate, setEditDue] = useState('');
     const [editStatus, setEditStatus] = useState(0);
@@ -284,6 +296,13 @@ console.log(laravelData);
     
     return(
         <>
+            {isCreateTaskOverlayVisible && (
+                <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 z-50">
+                    <div className="bg-white p-8 rounded-lg">
+                        <CreateTask toggle = {toggleCreateTaskOverlay} project = {projectId}/>
+                    </div>
+                </div>
+            )}
         <Header/>
        <div className="min-h-full w-full flex flex-col">
         <Sidebar/>
@@ -292,6 +311,14 @@ console.log(laravelData);
                 <div className="border-b dark:border-neutral-500 w-[85%] my-12 justify-between flex">
                     <div className='flex flex-col sm:flex-row justify-between mx-6 w-full'>
                         <h1 className="text-3xl mb-2 max-sm:w-[100%] max-sm:text-center">{projectOverview} overview</h1>
+                        <div className="flex items-center justify-center">
+                            <button
+                                className="rounded-lg border py-1.5 focus:outline-none dark:bg-[#1d2125] dark:text-white focus:border-purple-600 focus:border-b-2 transition-colors peer mb-4 mr-4 ml-4 p-4"
+                                onClick = {toggleCreateTaskOverlay}
+                            >
+                                Create Task
+                            </button>
+                        </div>
                         <div className="flex items-center justify-center">
                             <div className="relative -top-2">
                                 <input 
@@ -311,6 +338,7 @@ console.log(laravelData);
                                     Search
                                 </label>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -348,7 +376,7 @@ console.log(laravelData);
                                         <form className='flex w-full h-full flex-col text-black dark:text-white' onSubmit={(e) => handleSubmitEdit(e, task.id)} id={`formID${task.id}`}>
                                             <div className='absolute bg-neutral-600 top-0 right-0 w-8 h-8 my-4 mx-4 rounded-full cursor-pointer text-center dark:text-black' onClick={(event) => toggleEdit(task.id, event)}>
                                                 <p className='flex items-center justify-center h-full text-white'>X</p>
-                                            </div>
+`                                           </div>
                                             <div className='flex flex-col my-4 mx-4'>   
                                                 <h1 className='text-3xl'>Edit your task</h1>
                                                 <p className='text-2xl font-light'>Input your edits here:</p>

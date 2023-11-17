@@ -142,7 +142,7 @@ const RegisterForm = () => {
                 />
                 <p className = "text-lg text-purple-600">{error.passwordc}</p>
                 <button
-                    className = "border dark:border-purple-800 m-4 h-8 text-lg bg-purple-600 text-white rounded-lg hover:bg-purple-400 transition duration-400"
+                    className = "border border-purple-800 m-4 h-8 text-lg bg-purple-600 text-white rounded-lg hover:bg-purple-400 transition duration-400"
                     onClick={handleRegister}
                 >
                     Sign up

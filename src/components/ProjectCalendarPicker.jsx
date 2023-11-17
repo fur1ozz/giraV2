@@ -4,7 +4,6 @@ import Header from "./Header";
 import axios from 'axios';
 
 function ProjectCalendarPicker(){
-
     const [laravelData, setLaravelData] = useState([]);
 
     useEffect(() => {
