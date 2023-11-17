@@ -10,18 +10,14 @@ function Home(){
         <Header/>
         <div className="min-h-full w-full flex flex-col">
             <Sidebar/>
-            <div className='w-100 min-h-screen ms-[250px] max-sm:ms-[80px] max-[500px]:ms-0 dark:bg-[#1d2125] dark:text-white flex flex-col items-center overflow-auto'>
-                <div className="border-b border-[#e5e7eb] dark:border-[#282f35] w-[85%] py-6 mb-6 flex">
+            <div className='w-100 p-5 min-h-screen ms-[250px] max-sm:ms-[80px] max-[500px]:ms-0 dark:bg-[#1d2125] dark:text-white flex flex-col items-center overflow-auto'>
+                <div className="w-[85%] py-6 mb-6 flex">
                     <div className='flex flex-col mx-6 w-full justify-center text-center'>
                         <h1 className="text-5xl mb-2 font-bold text-neutral-700 dark:text-[#b6c2cf]">Welcome to GiraV2!</h1>
-                        <p className="text-xl mb-2 font-normal text-cyan-500 dark:text-violet-500">Your Ultimate Project Management Companion!</p>
+                        <p className="text-xl mb-2 font-normal text-cyan-500 dark:text-violet-500">Created, Maintained and Run by 3 passionate coders:</p>
                     </div>
                 </div>
                 <div className='flex flex-wrap w-full h-full justify-center text-neutral-700 dark:text-[#b6c2cf]'>
-                    <div className='flex w-[90%] text-center justify-center'>
-                    <p className='text-xl align-center font-semibold text-neutral-700 dark:text-[#b6c2cf]'>Created, Maintained and Run by 3 passionate coders:</p>
-                    </div>
-
                     <div className="max-w-sm rounded overflow-hidden shadow-lg max-[320px]:w-[315px] w-[300px] overflow-y-scroll my-6 mx-6 bg-neutral-100 dark:bg-[#161a1d]">
                         <div className="relative h-[300px]">
                             <img className="object-cover w-full h-full" src="/images/marcis_preset.png" alt="Marcis Jansons" />
