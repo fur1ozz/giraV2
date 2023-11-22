@@ -512,7 +512,7 @@ function CertainProjectCalendar(){
                                     >
                                         <td className="whitespace-break px-6 py-4 font-medium w-[36%] min-w-[36%]">{task.description}</td>
                                         <td className="whitespace-nowrap px-6 py-4 w-[17%] min-w-[17%]">
-                                            <img className="justify-center border-2 border-red-500 flex h-14 w-14 shrink-0 overflow-hidden rounded-full" src={getUserImage(task.userId) || defaultImageUrl} alt="Owner"></img>
+                                            <img className={`justify-center border-2 ${getHeaderBorderColor(indexM)} flex h-14 w-14 shrink-0 overflow-hidden rounded-full`} src={getUserImage(task.userId) || defaultImageUrl} alt="Owner"></img>
                                         </td>
                                         <td className="whitespace-nowrap px-6 py-4 w-[25%] min-w-[25%]">
                                             <div className={`text-center px-6 rounded-lg py-2 text-white  ${getStatusColor(task.status)}`}>
