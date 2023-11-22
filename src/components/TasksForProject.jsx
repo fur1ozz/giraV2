@@ -23,7 +23,7 @@ function TasksForProject() {
             .catch((error) => console.error('Error fetching data:', error));
 
 
-        fetch(`http://localhost/api/tasks/${projectId}`)
+        fetch(`http://localhost/api/tasks/project/${projectId}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
