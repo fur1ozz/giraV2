@@ -80,7 +80,7 @@ function CertainProjectCalendar(){
     
                 const data = await response.json();
                 setLaravelData(data);
-                console.log(data);
+                // console.log(data);
             } catch (error) {
                 console.error('Error fetching project data:', error.message);
             }
@@ -113,7 +113,7 @@ function CertainProjectCalendar(){
                 if (matchingProject) {
                     setProjectOverview(matchingProject.projectName);
                 } else {
-                    console.warn('No matching project found for the given projectId.');
+                    console.error('No matching project found for the given projectId.');
                 }
             } catch (error) {
                 console.error('Error fetching data:', error.message);
@@ -134,9 +134,9 @@ function CertainProjectCalendar(){
             task.description.toLowerCase().includes(query) ||
             getStatusText(task.status).toLowerCase().includes(query)
         );
-      
+    
         setFilteredTasks(sortTasksByDueDate(filtered));
-      };
+    };
 
     const formatDate = (dateString) => {
         const options = { day: 'numeric', month: 'short' };
@@ -145,12 +145,12 @@ function CertainProjectCalendar(){
     };
 
     const getStatusColor = (status) => {
-        switch (parseInt(status, 10)) {
-            case 3:
+        switch (status) {
+            case 'Done':
                 return 'bg-green-500';
-            case 2:
+            case 'In Progress':
                 return 'bg-yellow-500';
-            case 1:
+            case 'Stuck':
                 return 'bg-red-500';
             default:
                 return 'bg-gray-500';
@@ -158,17 +158,17 @@ function CertainProjectCalendar(){
     };
 
     const getStatusText = (status) => {
-        switch (parseInt(status, 10)) {
-            case 0:
+        switch (status) {
+            case 'To Do':
                 return 'Not started';
-            case 1:
+            case 'Stuck':
                 return 'Stuck';
-            case 2:
+            case 'In Progress':
                 return 'In progress';
-            case 3:
+            case 'Done':
                 return 'Done';
             default:
-                return 'Unknown';
+                return 'Not started';
         }
     };  
 
@@ -239,11 +239,12 @@ function CertainProjectCalendar(){
         if (Object.keys(newErrors).length === 0 && !priorityError) {
             setErrors({});
             try {
+                console.log(taskId);
                 const response = await fetch(`http://localhost/api/tasks/${taskId}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`, // Include your authorization header if needed
+                        Authorization: `Bearer ${token}`,
                     },
                     body: JSON.stringify({
                         description: trimmedDesc,
@@ -293,6 +294,7 @@ function CertainProjectCalendar(){
         const taskDate = new Date(task.dueDate);
         return `${taskDate.getFullYear()}-${taskDate.getMonth() + 1}`;
     }))];
+
     const sortMonths = (months, currentDate) => {
         return months.sort((a, b) => {
             const [yearA, monthA] = a.split('-');
@@ -321,6 +323,7 @@ function CertainProjectCalendar(){
         const dateB = new Date(b.dueDate).getTime();
         return sortOrder === 'asc' ? dateA - dateB : dateB - dateA;
     });
+
     };
     const getHeaderBorderColor = (index) => {
         const colors = ['border-sky-500', 'border-blue-600', 'border-purple-500'];
@@ -345,7 +348,6 @@ function CertainProjectCalendar(){
 
                 const data = await response.json();
                 setImageArray(data);
-                console.log(data);
                 
             } catch (error) {
                 console.error('Error fetching data:', error.message);
@@ -469,10 +471,10 @@ function CertainProjectCalendar(){
                                                         onChange={handleStatusChange}
                                                         id={`editStatus${task.id}`}
                                                     >
-                                                        <option value="0">Not started</option>
-                                                        <option value="1">Stuck</option>
-                                                        <option value="2">In progress</option>
-                                                        <option value="3">Done</option>
+                                                        <option value="To Do">Not started</option>
+                                                        <option value="Stuck">Stuck</option>
+                                                        <option value="In Progress">In progress</option>
+                                                        <option value="Done">Done</option>
                                                     </select>
                                                 </div>
                                                 <div className='flex flex-col mx-4 my-4'>
