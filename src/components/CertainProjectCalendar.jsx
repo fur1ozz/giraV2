@@ -1,13 +1,10 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import Sidebar from "./Sidebar";
 import Header from "./Header";
-import axios from 'axios';
 import { FaStar } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
-import {useNavigate} from "react-router-dom";
 import CreateTask from "./CreateTask";
-function CertainProjectCalendar({ match }){
-    const navigate = useNavigate();
+function CertainProjectCalendar(){
 
     const [isCreateTaskOverlayVisible, setCreateTaskOverlayVisible] = useState(false);
 
@@ -27,6 +24,7 @@ function CertainProjectCalendar({ match }){
         return stars;
     };
 
+    const [priorityError, setPriorityError] = useState(null);
     const genStar = (priority, taskId) => {
         return [...Array(5)].map((_, index) => {
             const currentRating = index + 1;
@@ -59,6 +57,7 @@ function CertainProjectCalendar({ match }){
             );
         });
     };
+    
 
 
     const [inputValue, setInputValue] = useState('');
@@ -68,38 +67,61 @@ function CertainProjectCalendar({ match }){
 
     const [laravelData, setLaravelData] = useState([]);
 
-    const { projectId, projectTitle } = useParams();
+    const { projectId } = useParams();
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost/api/CertainProjectCalendar-${projectId}`);
-                setLaravelData(response.data);
-                console.log(response.data);
+                const response = await fetch(`http://localhost/api/CertainProjectCalendar-${projectId}`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+    
+                const data = await response.json();
+                setLaravelData(data);
+                console.log(data);
             } catch (error) {
-                console.error('Error fetching project data:', error);
+                console.error('Error fetching project data:', error.message);
             }
         };
-
+    
         fetchData();
     }, [projectId]);
-
+    
 
     const [projectOverview, setProjectOverview] = useState('');
+    const token = localStorage.getItem('token');
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost/api/fetch-projects');
-                const matchingProject = response.data.find(project => project.id === parseInt(projectId));
+                const response = await fetch('http://localhost/api/fetch-projects', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const responseData = await response.json();
+                const matchingProject = responseData.data.find(project => project.id === parseInt(projectId, 10));
                 if (matchingProject) {
-                    setProjectOverview(matchingProject.projectTitle);
+                    setProjectOverview(matchingProject.projectName);
+                } else {
+                    console.warn('No matching project found for the given projectId.');
                 }
             } catch (error) {
-                console.error('Error fetching data:', error);
+                console.error('Error fetching data:', error.message);
             }
         };
 
         fetchData();
-    }, []);
+    }, [token]);
 
     const [filteredTasks, setFilteredTasks] = useState(laravelData);
 
@@ -159,28 +181,25 @@ function CertainProjectCalendar({ match }){
         editTask.classList.toggle('hidden');
 
         const currentTask = laravelData.find(task => task.id === id);
-    
+        console.log(currentTask.status);
         setEditDesc(currentTask.description || '');
         setEditDue(currentTask.dueDate || '');
         setEditStatus(currentTask.status || '');
         setRating(currentTask.priority || null);
     };
 
-    const toggleAdd = () => {
-
-    }
-
     const [editDesc, setEditDesc] = useState('');
     const [editDueDate, setEditDue] = useState('');
     const [editStatus, setEditStatus] = useState(0);
     const [errors, setErrors] = useState({});
+    
 
     const handleDescChange = (e) => {
         setEditDesc(e.target.value);
     };
     
     const handleStatusChange = (e) => {
-        console.log('Status value:', e.target.value);
+        // console.log('Status value:', e.target.value);
         setEditStatus(e.target.value);
     };
     const handleDueChange = (e) => {
@@ -212,18 +231,29 @@ function CertainProjectCalendar({ match }){
             newErrors.date = 'Date is in the past.';
           }
         }
-
-        if (Object.keys(newErrors).length === 0) {
+        if (!rating) {
+            setPriorityError('Priority is required. Please select at least 1 star.');
+        } else {
+            setPriorityError('');
+        }
+        if (Object.keys(newErrors).length === 0 && !priorityError) {
             setErrors({});
             try {
-                const response = await axios.put(`http://localhost/api/tasks/${taskId}`, {
-                    description: trimmedDesc,
-                    dueDate: editDueDate,
-                    status: editStatus,
-                    priority: rating,
+                const response = await fetch(`http://localhost/api/tasks/${taskId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`, // Include your authorization header if needed
+                    },
+                    body: JSON.stringify({
+                        description: trimmedDesc,
+                        dueDate: editDueDate,
+                        status: editStatus,
+                        priority: rating,
+                    }),
                 });
     
-                if (response) {
+                if (response.ok) {
                     const updatedData = laravelData.map(task => {
                         if (task.id === taskId) {
                             return {
@@ -240,9 +270,13 @@ function CertainProjectCalendar({ match }){
                     setLaravelData(updatedData);
                     setFilteredTasks(sortTasksByDueDate(updatedData));
                     setSuccessMessage("Task updated successfully");
+                } else {
+                    const errorData = await response.json();
+                    console.error('Error updating task:', errorData);
+                    setSuccessMessage("");
                 }
             } catch (error) {
-                console.error('Error updating task:', error.response.data);
+                console.error('Error updating task:', error.message);
                 setSuccessMessage("");
             }
         } else {
@@ -292,8 +326,39 @@ function CertainProjectCalendar({ match }){
         const colors = ['border-sky-500', 'border-blue-600', 'border-purple-500'];
         return colors[index % colors.length];
     };
-console.log(laravelData);
     
+    const defaultImageUrl = 'https://img.freepik.com/premium-vector/avatar-profile-icon-vector-illustration_276184-165.jpg';
+    const [imageArray, setImageArray] = useState([]);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('http://localhost/api/get-user-images', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                setImageArray(data);
+                console.log(data);
+                
+            } catch (error) {
+                console.error('Error fetching data:', error.message);
+            }
+        };
+
+        fetchData();
+    }, [token]);
+    const getUserImage = (userId) => {
+        const userImage = imageArray.find((image) => image.id === userId);
+        return userImage ? userImage.profile_image : defaultImageUrl;
+      };
+
     return(
         <>
             {isCreateTaskOverlayVisible && (
@@ -431,6 +496,7 @@ console.log(laravelData);
                                                     <div className='bg-white flex justify-evenly rounded-sm dark:border-neutral-200 dark:bg-[#1d2125] w-full text-xl text-yellow-500'>
                                                         {genStar(task.priority, task.id)}
                                                     </div>
+                                                    {priorityError && <p className="text-red-500">{priorityError}</p>}
                                                 </div>
                                                 <div className='flex flex-col mx-4 my-4'>
                                                     <input type="submit" className={`bg-white indent-1 text-lg rounded-sm border ${getHeaderBorderColor(indexM)} dark:bg-[#1d2125]`}/>
@@ -444,12 +510,12 @@ console.log(laravelData);
                                         className="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-150 dark:hover:bg-neutral-700"
                                         onClick={(e) => toggleEdit(task.id, e)}
                                     >
-                                        <td className="whitespace-normal px-6 py-4 font-medium w-[36%] min-w-[36%]">{task.description}</td>
+                                        <td className="whitespace-break px-6 py-4 font-medium w-[36%] min-w-[36%]">{task.description}</td>
                                         <td className="whitespace-nowrap px-6 py-4 w-[17%] min-w-[17%]">
-                                            <img className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full" src={task.owner} alt="Owner"></img>
+                                            <img className={`justify-center border-2 ${getHeaderBorderColor(indexM)} flex h-14 w-14 shrink-0 overflow-hidden rounded-full`} src={getUserImage(task.userId) || defaultImageUrl} alt="Owner"></img>
                                         </td>
                                         <td className="whitespace-nowrap px-6 py-4 w-[25%] min-w-[25%]">
-                                            <div className={`text-center px-6 rounded-lg py-2 text-white    ${getStatusColor(task.status)}`}>
+                                            <div className={`text-center px-6 rounded-lg py-2 text-white  ${getStatusColor(task.status)}`}>
                                                 {getStatusText(task.status)}
                                             </div>
                                         </td>

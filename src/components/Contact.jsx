@@ -13,7 +13,7 @@ function Contact(){
             <Sidebar/>
             <div className='w-100 min-h-screen ms-[250px] max-sm:ms-[80px] max-[500px]:ms-0 dark:bg-[#1d2125] dark:text-white flex flex-col items-center overflow-auto'>
                 <div className="border-b dark:border-neutral-500 w-[95%] my-12 flex">
-                    <div className='flex flex-col mx-6 w-full justify-center text-center'>
+                    <div className='flex flex-col max-[400px]:mx-0 mx-6 w-full justify-center text-center'>
                         <h1 className="text-6xl mb-2 font-bold text-neutral-700 dark:text-[#b6c2cf]">Have any questions?</h1>
                         <p className="text-3xl mb-2 font-normal text-neutral-700 dark:text-[#b6c2cf]">Contact us at:</p>
                     </div>
