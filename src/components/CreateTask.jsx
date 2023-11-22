@@ -5,6 +5,7 @@ const CreateTask = ({ toggle, project }) => {
     const [task, setTask] = useState({
        title: '',
        description: '',
+       role: '',
        dueDate: '',
        priority: 0,
        projectID : project,
@@ -37,6 +38,7 @@ const CreateTask = ({ toggle, project }) => {
     const validateForm = (values) => {
         const validationFunctions = {
             title: (value) => validateNotEmpty(value) || validateNoSpecialCharacters(value),
+            role: (value) => validateNotEmpty(value) || validateNoSpecialCharacters(value),
             description: (value) => validateNotEmpty(value) || validateNoSpecialCharacters(value),
             dueDate: (value) => validateNotEmpty(value) || validateDate(value),
             priority: (value) => validateNotEmpty(value) || validateNoSpecialCharacters(value),
@@ -172,6 +174,19 @@ const CreateTask = ({ toggle, project }) => {
                             onChange = {handleInputChange}
                         />
                         <p>{error.description}</p>
+                    </div>
+                    <div className='flex flex-col mx-4 my-4'>
+                        <label className='text-xl mb-4'>
+                            Role
+                        </label>
+                        <input
+                            className={`indent-2 text-lg rounded-sm border-b-2 dark:bg-[#1d2125]`}
+                            placeholder = "Role"
+                            value = {task.role}
+                            name = "role"
+                            onChange = {handleInputChange}
+                        />
+                        <p>{error.role}</p>
                     </div>
                     <div className='flex flex-col mx-4 my-4'>
                         <label className='text-xl mb-4'>

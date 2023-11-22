@@ -193,7 +193,9 @@ const LoginForm = () => {
                     {/*        </div>*/}
                     {/*    </button>*/}
                     {/*</div>*/}
-                    <GoogleLogin onSuccess={handleSuccess} onError={handleError}/>
+                    <div className = "flex justify-center">
+                        <GoogleLogin onSuccess={handleSuccess} onError={handleError}/>
+                    </div>
                 </div>
             </div>
         </GoogleOAuthProvider>

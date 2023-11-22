@@ -1,11 +1,11 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useNavigate} from 'react-router-dom';
 import ProjectPage from "./pages/ProjectPage";
 import CertainProjectCalendarPage from "./pages/CertainProjectCalendarPage";
 import ProjectCalendarPickerPage from "./pages/ProjectCalendarPickerPage";
 import CreateTask from "./components/CreateTask";
 import "./styles/tailwind.css";
 import Projects from "./components/Projects";
-// import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import Register from "./components/Register";
 
 import ForgotPassword from "./components/ForgotPassword";
@@ -17,6 +17,35 @@ import NewProject from "./components/NewProject";
 
 
 function App() {
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const token = localStorage.getItem('token');
+
+      if (token) {
+        try {
+          const response = await fetch('http://localhost/api/token-login', {
+            headers: {
+              'Authorization': `Bearer ${token}`,
+            },
+          });
+
+          if (response.ok) {
+            const user = await response.json();
+            if(user.message){
+              localStorage.setItem('token', user.token);
+              window.location.href = "http://localhost:3000/Home";
+            }
+          }
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+        }
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <Router>
       <div className="min-h-screen dark:bg-[#1d2125]">
