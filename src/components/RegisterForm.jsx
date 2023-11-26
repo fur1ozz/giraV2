@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-const RegisterForm = () => {
+const RegisterForm = ({message, stop}) => {
     const [register, setRegister] = useState({
         name: '',
         password: '',
@@ -83,7 +83,12 @@ const RegisterForm = () => {
                 .then((response) => response.json())
                 .then((data) => {
                     console.log(data);
-                    if (data.messages) {
+                    if (data.message == 'Registration successful') {
+                        message();
+                        const timeoutId = setTimeout(() => {
+                            stop();
+                        }, 3000);
+                    }else{
                         const updatedErrorState = {};
                         data.messages.forEach((error) => {
                             updatedErrorState[error.field] = error.message;

@@ -1,7 +1,51 @@
 import React, { useState, useEffect } from 'react';
 import RegisterBox from "./RegisterBox";
+import {useNavigate} from "react-router-dom";
 
 const Register = () => {
+    const [redirected, setRedirected] = useState(false);
+    const navigate = useNavigate();
+    const [message, setMessage] = useState(false);
+
+    const setTrue = () => {
+        setMessage(true);
+    }
+
+    const setFalse = () => {
+        setMessage(false);
+    }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const token = localStorage.getItem('token');
+
+            if (token && !redirected) {
+                try {
+                    const response = await fetch('http://localhost/api/token-login', {
+                        method: "GET",
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                        },
+                    });
+
+                    if (response.ok) {
+                        const user = await response.json();
+                        if(user.message){
+                            localStorage.setItem('token', user.token);
+                            setRedirected(true);
+                            // window.location.href = "http://localhost:3000/Home";
+                            navigate('/Home');
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error fetching user data:', error);
+                }
+            }
+        };
+
+        fetchData();
+    }, []);
+
 
     const storedDarkMode = localStorage.getItem("darkMode");
     const [isDarkMode, setIsDarkMode] = useState(
@@ -35,6 +79,13 @@ const Register = () => {
 
     return (
         <div>
+            {message &&
+                <div className='fixed top-0 z-40 left-0 w-full h-full flex items-center justify-center bg-white'>
+                    <div className="bg-white border border-gray-300 p-4 rounded shadow-md">
+                        <p className="text-black">New user registered successfully.</p>
+                    </div>
+                </div>
+            }
             <div className = "min-w-full  min-h-screen flex">
                 <div className='absolute top-0 right-0 my-4 mx-4'>
                     <button href="#" className="text-cyan-500 hover:text-cyan-600 dark:text-violet-500 dark:hover:text-violet-800" onClick={toggleDarkMode}>
@@ -50,7 +101,7 @@ const Register = () => {
                     </button>
                 </div>
                 <div className = "min-w-full min-h-full flex justify-center content-center items-center">
-                    <RegisterBox />
+                    <RegisterBox message = {setTrue} stop = {setFalse} />
                 </div>
             </div>
         </div>
