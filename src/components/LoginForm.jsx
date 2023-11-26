@@ -166,7 +166,7 @@ const LoginForm = () => {
                         placeholder = "Password..."
                     />
                     <p className = "text-lg text-pink-400">{error.password}</p>
-                    <p className = "text-lg text-blue-400 underline hover:cursor-pointer">Forgot password?</p>
+                    <p className = "text-lg text-blue-400 underline hover:cursor-pointer" onClick={() => navigate('/ForgotPassword')}>Forgot password?</p>
                     <button
                         className = "border border-pink-800 m-4 h-8 text-lg bg-pink-500 text-white rounded-lg hover:bg-pink-300 transition duration-400"
                         onClick={handleLogin}

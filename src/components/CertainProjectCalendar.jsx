@@ -168,7 +168,7 @@ function CertainProjectCalendar(){
             case 'Done':
                 return 'Done';
             default:
-                return 'Not started';
+                return 'Not Started';
         }
     };  
 

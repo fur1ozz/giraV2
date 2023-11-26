@@ -165,18 +165,6 @@ function Header() {
                                 </svg>
                                 <span className="flex items-center ">New Project</span>
                             </Link>
-                            <Link to="/newTask"
-                                  className={`flex h-[40px] rounded-sm px-2 py-[5px] mb-2 items-center justify-between ${
-                                      currentRoute === '/newTask' ? 'bg-[#06b6d44a] dark:bg-[#8b5cf64a]' : 'hover:bg-[#06b6d44a] dark:hover:bg-[#8b5cf64a]'
-                                  }
-                                  text-cyan-500 hover:text-cyan-600 dark:text-violet-500 dark:hover:text-violet-800
-                                  `}
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 6.878V6a2.25 2.25 0 012.25-2.25h7.5A2.25 2.25 0 0118 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 004.5 9v.878m13.5-3A2.25 2.25 0 0119.5 9v.878m0 0a2.246 2.246 0 00-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0121 12v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6c0-.98.626-1.813 1.5-2.122" />
-                                </svg>
-                                <span className="flex items-center">New Task</span>
-                            </Link>
                         </nav>
                     </div>
                 )}
@@ -204,11 +192,26 @@ function Header() {
                             <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                         </svg>
                     </Link>
-                    <Link to="/Profile" className="text-cyan-500 hover:text-cyan-600 dark:text-violet-500 dark:hover:text-violet-800">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                        </svg>
-                    </Link>
+                    {localStorage.getItem('token') ?
+                        <Link to="/Profile" className="text-cyan-500 hover:text-cyan-600 dark:text-violet-500 dark:hover:text-violet-800">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                            </svg>
+                        </Link>
+                        :
+                        <Link to="/" className="text-cyan-500 hover:text-cyan-600 dark:text-violet-500 dark:hover:text-violet-800">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                            </svg>
+                        </Link>
+                    }
+                    {localStorage.getItem('token') &&
+                        <Link to = "/" onClick = {() => {localStorage.removeItem('token')}}  className="text-cyan-500 hover:text-cyan-600 dark:text-violet-500 dark:hover:text-violet-800">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+                            </svg>
+                        </Link>
+                    }
                 </nav>
             </div>
         </header>
