@@ -1,7 +1,7 @@
 import Sidebar from "./Sidebar";
 import {useEffect, useState} from 'react';
 import Header from "./Header";
-import {useLocation} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {getMonthTextColor} from "../utils/ColorUtils";
 import {getMonthBackgroundColor} from "../utils/ColorUtils";
 
@@ -12,6 +12,10 @@ function TasksForProject() {
     const [searchTerm, setSearchTerm] = useState('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
+    const [isAddMembersPopupVisible, setAddMembersPopupVisible] = useState(false);
+    const [inputValue, setInputValue] = useState('');
+    const [suggestions, setSuggestions] = useState([]);
 
     const location = useLocation();
     const projectId = new URLSearchParams(location.search).get('id');
@@ -38,8 +42,22 @@ function TasksForProject() {
                 setError(error);
                 setLoading(false);
             });
+
+        fetch(`http://localhost/api/user-names`)
+            .then((response) => response.json())
+            .then((data) => {
+                setSuggestions(data.users.map((user) => user.name) || []);
+            })
+            .catch((error) => console.error('Error fetching suggestions:', error));
     }, []);
 
+    const toggleAddMembersPopup = () => {
+        setAddMembersPopupVisible(!isAddMembersPopupVisible);
+    };
+    const handleSuggestionClick = (suggestion) => {
+        setInputValue(suggestion);
+        setSuggestions([]);
+    };
     const changeTaskStatus = (taskID, newStatus) => {
         // Update the task status on the frontend optimistically
         const updatedTasks = tasks.map((task) => {
@@ -185,9 +203,63 @@ function TasksForProject() {
             <div className="flex w-[100vw] dark:bg-[#1d2125]">
                 <Sidebar />
                 <div className="flex w-full ms-[250px] p-[20px] flex-col max-sm:ms-[80px] overflow-auto max-[500px]:ms-0">
-                    <div className="p-5">
+                    <div className="p-5 flex justify-between">
                         <h1 className={`font-bold text-2xl ${getMonthTextColor(projectsData.creationDate)}`}>{projectsData.projectName}</h1>
+                        {/*<button className="rounded px-3 py-[7px] font-medium items-center text-sm justify-between text-neutral-800 dark:text-neutral-200 bg-cyan-500 hover:bg-cyan-400 dark:bg-violet-500 dark:hover:bg-violet-700"*/}
+                        {/*        onClick={toggleAddMembersPopup}*/}
+                        {/*>*/}
+                        {/*    Add Members*/}
+                        {/*</button>*/}
                     </div>
+                    {isAddMembersPopupVisible && (
+                        <>
+                            {/* Blurred dark background */}
+                            <div
+                                className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-10"
+                                onClick={toggleAddMembersPopup}
+                            ></div>
+                            <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 bg-neutral-100 p-8 rounded shadow-lg z-20 dark:bg-[#161a1d]">
+                                {/* Input field with suggestions */}
+                                <input
+                                    type="text"
+                                    className="w-full p-2 border border-gray-300 rounded mb-4"
+                                    placeholder="Enter member name"
+                                    value={inputValue}
+                                    onChange={(e) => setInputValue(e.target.value)}
+                                />
+                                {inputValue.trim() !== '' && (
+                                    <ul className="list-none p-0 m-0">
+                                        {suggestions
+                                            .filter((suggestion) =>
+                                                suggestion.toLowerCase().includes(inputValue.toLowerCase())
+                                            )
+                                            .map((suggestion, index) => (
+                                                <li
+                                                    key={index}
+                                                    className="cursor-pointer py-1 px-2 rounded hover:bg-gray-200 dark:text-neutral-100 dark:hover:bg-neutral-900"
+                                                    onClick={() => handleSuggestionClick(suggestion)}
+                                                >
+                                                    {suggestion}
+                                                </li>
+                                            ))}
+                                    </ul>
+                                )}
+                                <div className="flex justify-between mt-4 space-x-4">
+                                    <button
+                                        className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                                        onClick={toggleAddMembersPopup}
+                                    >
+                                        Close
+                                    </button>
+                                    <button
+                                        className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                                    >
+                                        Add Member
+                                    </button>
+                                </div>
+                            </div>
+                        </>
+                    )}
                     <div className="p-5">
                         <div className="flex border-2 bg-neutral-100 drop-shadow-sm rounded-sm h-fit w-fit p-2 dark:bg-[#22272b] dark:border-[#374049] dark:text-[#9fadbc]">
                             <input

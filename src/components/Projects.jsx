@@ -10,27 +10,36 @@ function Projects() {
     const [projectsData, setProjectsData] = useState([]);
     const [teamIds, setTeamIds] = useState([]);
     const userId = 1;
+    let number = 1;
+
 
     useEffect(() => {
+        console.log('useEffect is running', { userId });
+
         fetch(`http://localhost/api/members/${userId}`)
             .then((response) => response.json())
             .then((data) => {
-
                 const userTeamIds = data.members.map((member) => member.team_id);
                 setTeamIds(userTeamIds);
+                console.log('User Team Ids:', userTeamIds);
+                console.log("test twice "+number);
+                number++;
 
+                // Fetch projects based on userTeamIds
+                const fetchProjectsPromises = userTeamIds.map((teamIds) =>
+                    fetch(`http://localhost/api/projects/${teamIds}`).then((response) => response.json())
+                );
 
-                userTeamIds.forEach((teamId) => {
-                    fetch(`http://localhost/api/projects/${teamId}`)
-                        .then((response) => response.json())
-                        .then((projects) => {
-
-                            setProjectsData((prevProjects) => [...prevProjects, ...projects.projects]);
-                        })
-                        .catch((error) => console.error('Error fetching projects data:', error));
-                });
+                Promise.all(fetchProjectsPromises)
+                    .then((projectsDataArray) => {
+                        // Flatten the array of arrays into a single array
+                        const flattenedProjectsData = projectsDataArray.flatMap((projects) => projects.projects);
+                        setProjectsData([...flattenedProjectsData]);
+                    })
+                    .catch((error) => console.error('Error fetching projects data:', error));
             })
             .catch((error) => console.error('Error fetching user data:', error));
+        console.log("test 7");
     }, [userId]);
 
     const filteredProjects = Array.isArray(projectsData)

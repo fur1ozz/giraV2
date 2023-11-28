@@ -1,30 +1,40 @@
 import React, { useState } from 'react';
 import Sidebar from "./Sidebar";
 import Header from "./Header";
-import { getMonthTextColor } from "../utils/ColorUtils";
 
 function NewProject() {
-    const [teamId, setTeamId] = useState('');
+    const [teamName, setTeamName] = useState('');
     const [projectName, setProjectName] = useState('');
     const [projectDescription, setProjectDescription] = useState('');
-    const [teamIdError, setTeamIdError] = useState('');
+    const [teamNameError, setTeamNameError] = useState('');
     const [nameError, setNameError] = useState('');
     const [descriptionError, setDescriptionError] = useState('');
     const [confirmationMessage, setConfirmationMessage] = useState('');
 
-
     const creator = "Janis Berzins";
 
-    const handleCreateProject = () => {
-        // Reset previous errors
-        setTeamIdError('');
+    const handleCreateProject = async () => {
+        setTeamNameError('');
         setNameError('');
         setDescriptionError('');
 
         let isValid = true;
 
-        // Simple validation for length
-        if (projectName.length > 100) {
+        if (!teamName) {
+            setTeamNameError('Team Name is required.');
+            isValid = false;
+        } else if (teamName.length > 100) {
+            setTeamNameError('Team Name must be 100 characters or less.');
+            isValid = false;
+        } else if (teamName.length < 5) {
+            setTeamNameError('Team Name must be at least 5 characters.');
+            isValid = false;
+        }
+
+        if (!projectName) {
+            setNameError('Project name is required.');
+            isValid = false;
+        } else if (projectName.length > 100) {
             setNameError('Project name must be 100 characters or less.');
             isValid = false;
         } else if (projectName.length < 5) {
@@ -32,7 +42,10 @@ function NewProject() {
             isValid = false;
         }
 
-        if (projectDescription.length > 250) {
+        if (!projectDescription) {
+            setDescriptionError('Project description is required.');
+            isValid = false;
+        } else if (projectDescription.length > 250) {
             setDescriptionError('Project description must be 250 characters or less.');
             isValid = false;
         } else if (projectDescription.length < 5) {
@@ -40,48 +53,63 @@ function NewProject() {
             isValid = false;
         }
 
-        if (!teamId || isNaN(teamId)) {
-            setTeamIdError('Team ID is required and must be a number.');
-            isValid = false;
-        }
-
         if (!isValid) {
             return;
         }
 
-        const requestData = {
-            projectName: projectName,
-            description: projectDescription,
-            creator: creator,
-            team_id: parseInt(teamId),
-        };
+        try {
+            console.log("test1");
+            const requestDataName = {
+                teamName: teamName,
+            };
 
-        fetch('http://localhost/api/projects/create', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(requestData),
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then((data) => {
-                console.log('Project created successfully:', data);
-                setConfirmationMessage('Project created successfully!');
-                setTeamId('');
-                setProjectName('');
-                setProjectDescription('');
-                setTimeout(() => {
-                    setConfirmationMessage('');
-                }, 3000);
-            })
-            .catch((error) => {
-                console.error('Error creating project:', error);
+            const teamResponse = await fetch('http://localhost/api/teams/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestDataName),
             });
+
+            if (!teamResponse.ok) {
+                throw new Error(`HTTP error! Status: ${teamResponse.status}`);
+            }
+
+            const teamData = await teamResponse.json();
+            const teamId = teamData.team_id;
+
+            const requestData = {
+                projectName: projectName,
+                description: projectDescription,
+                creator: creator,
+                team_id: teamId,
+            };
+
+            // Second fetch to create the project
+            const projectResponse = await fetch('http://localhost/api/projects/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestData),
+            });
+
+            if (!projectResponse.ok) {
+                throw new Error(`HTTP error! Status: ${projectResponse.status}`);
+            }
+
+            const projectData = await projectResponse.json();
+            console.log('Project created successfully:', projectData);
+            setConfirmationMessage('Project created successfully!');
+            setTeamName('');
+            setProjectName('');
+            setProjectDescription('');
+            setTimeout(() => {
+                setConfirmationMessage('');
+            }, 3000);
+        } catch (error) {
+            console.error('Error:', error);
+        }
     };
 
     return (
@@ -97,28 +125,28 @@ function NewProject() {
                         <div className="w-full max-w-xs">
                             <form className="px-8 pt-6 pb-8 mb-4">
                                 <div className="mb-4">
-                                    <label className="block text-neutral-700 dark:text-[#b6c2cf] text-sm font-bold mb-2" htmlFor="teamId">
-                                        Team id
+                                    <label className="block text-neutral-700 dark:text-[#b6c2cf] text-sm font-bold mb-2" htmlFor="teamName">
+                                        Team Name
                                     </label>
                                     <input
                                         className={`dark:bg-[#282f35] dark:border-transparent border shadow appearance-none rounded w-full py-2 px-3 text-gray-700 dark:text-[#b6c2cf] dark:placeholder:text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
-                                            teamIdError ? 'border-red-500 dark:border-red-500' : ''
+                                            teamNameError ? 'border-red-500 dark:border-red-500' : ''
                                         }`}
-                                        id="teamId"
-                                        type="number"
-                                        placeholder="id"
-                                        value={teamId}
+                                        id="teamName"
+                                        type="text"
+                                        placeholder="Team Name"
+                                        value={teamName}
                                         onChange={(e) => {
-                                            setTeamId(e.target.value);
-                                            if (!e.target.value || isNaN(e.target.value)) {
-                                                setTeamIdError('Team ID is required and must be a number.');
+                                            setTeamName(e.target.value);
+                                            if (!e.target.value) {
+                                                setTeamNameError('Team Name is required.');
                                             } else {
-                                                setTeamIdError('');
+                                                setTeamNameError('');
                                             }
                                         }}
                                         required
                                     />
-                                    {teamIdError && <p className="text-red-500 text-xs italic">{teamIdError}</p>}
+                                    {teamNameError && <p className="text-red-500 text-xs italic">{teamNameError}</p>}
                                 </div>
                                 <div className="mb-4">
                                     <label className="block text-neutral-700 dark:text-[#b6c2cf] text-sm font-bold mb-2" htmlFor="projectName">
