@@ -10,6 +10,7 @@
       <change beforePath="$PROJECT_DIR$/src/components/Projects.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Projects.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Sidebar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/TasksForProject.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TasksForProject.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LoginForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LoginForm.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

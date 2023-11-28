@@ -7,6 +7,12 @@ const NewPassword = () => {
     const { token } = useParams();
     const navigate = useNavigate();
 
+    const [message, setMessage] = useState(false);
+
+    const setTrue = () => {
+        setMessage(true);
+    }
+
     const [password, setPassword] = useState({
         password: '',
         passwordc: ''
@@ -77,7 +83,10 @@ const NewPassword = () => {
                 .then((data) => {
                     console.log(data);
                     if(data.message){
-                        navigate('/register');
+                        setTrue();
+                        const timeoutId = setTimeout(() => {
+                            navigate('/');
+                        }, 3000);
                     }
                 })
                 .catch((error) => {
@@ -88,6 +97,13 @@ const NewPassword = () => {
 
     return (
         <div className = "min-w-full  min-h-screen flex">
+            {message &&
+                <div className='fixed top-0 z-40 left-0 w-full h-full flex items-center justify-center bg-white'>
+                    <div className="bg-white border border-gray-300 p-4 rounded shadow-md">
+                        <p className="text-black">Password successfully changed.</p>
+                    </div>
+                </div>
+            }
             <div className = "min-w-full min-h-full flex justify-center content-center items-center">
                 <div className="xl:w-2/6 h-2/4 border-2 rounded-lg bg-white shadow-lg border-gray-300 lg:w-8/12 md:w-4/6 w-5/6">
                     <div className = "flex items-center w-full h-full bg-gray-50">

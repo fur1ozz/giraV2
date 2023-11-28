@@ -33,6 +33,9 @@ const ForgotPassword = () => {
                 .then((response) => response.json())
                 .then((data) => {
                     console.log(data);
+                    if(data.error){
+                        setError(data.error);
+                    }
                 })
                 .catch((error) => {
                     console.error(error);

@@ -3,7 +3,7 @@ import {useState, useEffect} from "react";
 import RegisterForm from "./RegisterForm";
 import LoginForm from "./LoginForm";
 
-const RegisterBox = () => {
+const RegisterBox = ({message, stop}) => {
     const [isLogin, setIsLogin] = useState(true);
     const [width, setWidth] = useState(window.innerWidth);
 
@@ -47,7 +47,7 @@ const RegisterBox = () => {
                         }`}
                     >
                         <div className="w-full bg-gray-100 text-white p-6">
-                            <RegisterForm/>
+                            <RegisterForm message = {message} stop = {stop}/>
                         </div>
                     </div>
                 </div>

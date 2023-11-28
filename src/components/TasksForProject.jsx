@@ -290,9 +290,9 @@ function TasksForProject() {
                         </div>
                         <div className="w-72 bg-neutral-100 rounded-sm max-h-full p-2 flex flex-col drop-shadow-sm mb-3 dark:bg-[#161a1d]">
                             <div className="text-orange-500 font-medium pt-1 pb-2">
-                                IN PROGRESS {filteredTasks.filter((task) => task.status === "In Progress").length}
+                                IN PROGRESS {filteredTasks.filter((task) => task.status === "In Progress" || task.status === "Stuck").length}
                             </div>
-                            {renderTasks(filteredTasks.filter((task) => task.status === "In Progress"), "In Progress")}
+                            {renderTasks(filteredTasks.filter((task) => task.status === "In Progress" || task.status === "Stuck"), "In Progress")}
                         </div>
                         <div className="w-72 bg-neutral-100 rounded-sm max-h-full p-2 flex flex-col drop-shadow-sm mb-3 dark:bg-[#161a1d]">
                             <div className="text-lime-500 font-medium pt-1 pb-2">

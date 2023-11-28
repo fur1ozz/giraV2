@@ -5,6 +5,7 @@ const CreateTask = ({ toggle, project }) => {
     const [task, setTask] = useState({
        title: '',
        description: '',
+       role: '',
        dueDate: '',
        priority: 0,
        projectID : project,
@@ -37,6 +38,7 @@ const CreateTask = ({ toggle, project }) => {
     const validateForm = (values) => {
         const validationFunctions = {
             title: (value) => validateNotEmpty(value) || validateNoSpecialCharacters(value),
+            role: (value) => validateNotEmpty(value) || validateNoSpecialCharacters(value),
             description: (value) => validateNotEmpty(value) || validateNoSpecialCharacters(value),
             dueDate: (value) => validateNotEmpty(value) || validateDate(value),
             priority: (value) => validateNotEmpty(value) || validateNoSpecialCharacters(value),
@@ -158,7 +160,7 @@ const CreateTask = ({ toggle, project }) => {
                             name = "title"
                             onChange = {handleInputChange}
                         />
-                        <p>{error.title}</p>
+                        <p className="text-red-500">{error.title}</p>
                     </div>
                     <div className='flex flex-col mx-4 my-4'>
                         <label className='text-xl mb-4'>
@@ -171,7 +173,20 @@ const CreateTask = ({ toggle, project }) => {
                             name = "description"
                             onChange = {handleInputChange}
                         />
-                        <p>{error.description}</p>
+                        <p className="text-red-500">{error.description}</p>
+                    </div>
+                    <div className='flex flex-col mx-4 my-4'>
+                        <label className='text-xl mb-4'>
+                            Role
+                        </label>
+                        <input
+                            className={`indent-2 text-lg rounded-sm border-b-2 dark:bg-[#1d2125]`}
+                            placeholder = "Role"
+                            value = {task.role}
+                            name = "role"
+                            onChange = {handleInputChange}
+                        />
+                        <p>{error.role}</p>
                     </div>
                     <div className='flex flex-col mx-4 my-4'>
                         <label className='text-xl mb-4'>
@@ -184,7 +199,7 @@ const CreateTask = ({ toggle, project }) => {
                             onChange = {handleInputChange}
                             name = "dueDate"
                         />
-                        <p>{error.dueDate}</p>
+                        <p className="text-red-500">{error.dueDate}</p>
                     </div>
                     <div className='flex flex-col mx-4 my-4'>
                         <label className='text-xl mb-4'>
@@ -193,7 +208,7 @@ const CreateTask = ({ toggle, project }) => {
                         <div className='bg-white flex justify-evenly rounded-sm dark:border-neutral-200 dark:bg-[#1d2125] w-full text-xl text-yellow-500'>
                             {StarRating()}
                         </div>
-                        <p>{error.priority}</p>
+                        <p className="text-red-500">{error.priority}</p>
                     </div>
                     <div className='flex flex-col mx-4 my-4'>
                         {/*<input type="submit" className={`bg-white indent-1 text-lg rounded-sm border  dark:bg-[#1d2125]`}/>*/}
